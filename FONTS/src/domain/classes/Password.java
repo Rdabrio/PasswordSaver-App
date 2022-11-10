@@ -19,7 +19,9 @@ public class Password {
 
     public String getInfo() { return this.info; }
 
+    public void setId(String newId) { this.id = newId; }
+
     public void setInfo(String newInfo) { this.info = newInfo; }
 
-    public void setId(String newId) { this.id = newId; }
+
 }

@@ -1,0 +1,23 @@
+-Password: data structure, represents a password
+    -Atributes:
+        -id is a String, represents the name of the password f.i. Netflix, Amazon, Gmail
+        -info is a String, represents the combination of ASCII characters
+
+    -Methods:
+        -Password is the constructor
+        -getId returns the id of the Password
+        -getInfo returns the info of the Password
+        -setId changes the current id to the new id
+        -setInfo changes the current info to the new info
+
+-PasswordList: data structure, represents a list of passwords
+    -Atributes:
+        -passwords is a HashMap<String, Password>, the key is the id of the value (Password)
+
+    -Methods:
+        -PasswordList is the constructor
+        -existsPassword returns true if the Password with id == passwordId exists, false in any other case
+        -addPassword creates and adds (if not exists yet) a Password with id == passwordId info == passwordInfo to the list
+        -removePassword eliminates (if exists) the Password of the list with id == passwordId
+        -getPassword returns the object Password (if exists) with id == passwordId
+        -modifyPassword modify the id or the info or both of the Password (if exists) with id == currentId
