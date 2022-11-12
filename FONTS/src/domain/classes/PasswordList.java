@@ -1,7 +1,6 @@
 package domain.classes;
 
-import domain.classes.Password;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PasswordList {
@@ -11,8 +10,7 @@ public class PasswordList {
     public PasswordList() { this.passwords = new HashMap<>(); }
 
     public boolean existsPassword(String passwordId) {
-        if (this.passwords.size() == 0 || !this.passwords.containsKey(passwordId)) return false;
-        return true;
+        return this.passwords.size() != 0 && this.passwords.containsKey(passwordId);
     }
 
     public boolean addPassword(String passwordId, String passwordInfo) {
@@ -49,5 +47,10 @@ public class PasswordList {
             else this.passwords.get(currentId).setInfo(newInfo);
         }
         return true;
+    }
+
+    public ArrayList<Password> getMyPasswords() {
+        if (this.passwords.size() == 0) return null;
+        return new ArrayList<>(this.passwords.values());
     }
 }
