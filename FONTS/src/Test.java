@@ -11,6 +11,7 @@ public class Test {
     public static void main(String[] args) {
 
         controller = new DomainController();
+        controller.iniDomainController();
         Scanner scan = new Scanner(System.in);
         boolean exit = false;
 
@@ -28,6 +29,7 @@ public class Test {
             switch (code) {
                 case 0:
                     exit = true;
+                    controller.saveAll();
                     break;
 
                 case 1:
