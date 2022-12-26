@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 
-public class MainEvents implements Events {
+public class MainEvents implements MEvents {
 
     private MainView main;
 

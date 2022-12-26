@@ -2,7 +2,7 @@ package gui;
 
 import java.awt.event.*;
 
-public interface Events extends ActionListener, MouseListener, WindowListener {
+public interface MEvents extends ActionListener, MouseListener, WindowListener {
     public void actionPerformed(ActionEvent e);
 
     public void mouseClicked(MouseEvent e);

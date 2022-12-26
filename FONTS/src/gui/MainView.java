@@ -7,19 +7,23 @@ import java.util.ArrayList;
 
 public class MainView {
 
-    private GuiCtrl gui;
+    private final GuiCtrl gui;
 
-    private JFrame frame = new JFrame("Main View");
+    private final JFrame frame = new JFrame("Main View");
 
-    private JPanel contentPanel = new JPanel();
+    private final JPanel contentPanel = new JPanel();
 
-    private JTable dataTable = new JTable();
+    private final JTable dataTable = new JTable();
 
-    private JButton deleteButton = new JButton();
+    private final JButton deleteButton = new JButton();
 
-    private JButton modifyButton = new JButton();
+    private final JButton modifyButton = new JButton();
 
-    private JButton addButton = new JButton();
+    private final JButton addButton = new JButton();
+
+    private final JLabel IDLabel = new JLabel();
+
+    private final JLabel InfoLabel = new JLabel();
 
     private final double width;
 
@@ -34,7 +38,6 @@ public class MainView {
 
     public void init() {
         frame.setContentPane(contentPanel);
-
         frame.setBounds((int) (width / 2.1), (int) (height / 2.5), (int) width, (int) height);
         frame.setResizable(false);
 
@@ -49,20 +52,30 @@ public class MainView {
         dataTable.setBounds((int) (width / 3.9), (int) (height / 3.9), (int) (width/2.0), (int) (height/1.4));
         contentPanel.add(dataTable);
 
+        IDLabel.setText("Password ID");
+        IDLabel.setBounds((int) (width / 3), (int) (height / 4.7), (int) (width/7), (int) (height/19));
+        contentPanel.add(IDLabel);
+
+        InfoLabel.setText("Password Info");
+        InfoLabel.setBounds((int) (width / 1.7), (int) (height / 4.7), (int) (width/7), (int) (height/19));
+        contentPanel.add(InfoLabel);
+
         deleteButton.setText("Delete");
         deleteButton.setActionCommand("Delete");
         deleteButton.addActionListener(gui.getMainEvents());
+        deleteButton.setBounds((int) (width / 1.25), (int) (height / 1.4), (int) (width/7.0), (int) (height/19.0));
         contentPanel.add(deleteButton);
 
         addButton.setText("Add");
         addButton.setActionCommand("Add");
         addButton.addActionListener(gui.getMainEvents());
-        addButton.setBounds((int) (width / 3.9), (int) (height / 6.0), (int) (width/6.0), (int) (height/9.0));
+        addButton.setBounds((int) (width / 1.25), (int) (height / 2.7), (int) (width/7.0), (int) (height/19.0));
         contentPanel.add(addButton);
 
         modifyButton.setText("Modify");
         modifyButton.setActionCommand("Modify");
         modifyButton.addActionListener(gui.getMainEvents());
+        modifyButton.setBounds((int) (width / 1.25), (int) (height / 1.85), (int) (width/7.0), (int) (height/19.0));
         contentPanel.add(modifyButton);
 
     }
@@ -80,10 +93,17 @@ public class MainView {
     }
 
     public void newPassword() {
-
+        gui.setVisiblePasswordView(true);
     }
 
     public void modifyPassword() {
+        int row = dataTable.getSelectedRow();
+        if (row >= 0) {
+            String id = dataTable.getModel().getValueAt(row, 0).toString();
+            String info = dataTable.getModel().getValueAt(row, 1).toString();
+            gui.setVisiblePasswordView(true);
+        }
+        else JOptionPane.showMessageDialog(null, "Select a password to modify");
 
     }
 
