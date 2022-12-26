@@ -7,9 +7,19 @@ public class PasswordView {
 
     private final GuiCtrl gui;
 
-    private final JFrame frame = new JFrame("Main View");
+    private final JFrame frame = new JFrame("Password View");
 
     private final JPanel contentPanel = new JPanel();
+
+    private JTextField idField = new JTextField();
+
+    private JTextField infoField = new JTextField();
+
+    private JButton save = new JButton();
+
+    private JLabel idLabel = new JLabel();
+
+    private JLabel infoLabel = new JLabel();
 
     private final double width;
 
@@ -24,7 +34,7 @@ public class PasswordView {
 
     public void init() {
         frame.setContentPane(contentPanel);
-        frame.setBounds((int) (width / 2.1), (int) (height / 2.5), (int) width, (int) height);
+        frame.setBounds((int) (width / 1.35), (int) (height / 1.5), (int) (width/2), (int) (height/2));
         frame.setResizable(false);
 
         initComponents();
@@ -34,6 +44,24 @@ public class PasswordView {
         frame.addWindowListener(gui.getPasswordEvents());
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         contentPanel.setLayout(null);
+
+        idField.setBounds((int) (width / 12), (int) (height / 7.5), (int) (width/2.95), (int) (height/25));
+        contentPanel.add(idField);
+
+        infoField.setBounds((int) (width / 12), (int) (height / 4), (int) (width/2.95), (int) (height/25));
+        contentPanel.add(infoField);
+
+        save.setBounds((int) (width / 2.8), (int) (height / 2.7), (int) (width/15), (int) (height/27));
+        save.setText("Save");
+        contentPanel.add(save);
+
+        idLabel.setText("ID:");
+        idLabel.setBounds((int) (width / 20), (int) (height / -10), (int) (width/2), (int) (height/2));
+        contentPanel.add(idLabel);
+
+        infoLabel.setText("Info:");
+        infoLabel.setBounds((int) (width / 20), (int) (height / 50), (int) (width/2), (int) (height/2));
+        contentPanel.add(infoLabel);
     }
 
     public void setVisible(boolean b) { this.frame.setVisible(b); }
