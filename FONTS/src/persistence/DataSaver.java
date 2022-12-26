@@ -1,9 +1,7 @@
 package persistence;
 
-import domain.classes.Password;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DataSaver {
@@ -37,12 +35,12 @@ public class DataSaver {
         return result.split(String.valueOf(SEPARATOR));
     }
 
-    public void writeData(ArrayList<Password> data) {
+    public void writeData(String[] data) {
         String path = System.getProperty("user.dir") + dataDir;
         try {
             FileWriter writer = new FileWriter(path);
-            for (Password p : data) {
-                writer.write(p.getId() + "\0\n" + p.getInfo() + SEPARATOR+"");
+            for (String s : data) {
+                writer.write(s + SEPARATOR+"");
             }
             writer.close();
         } catch (IOException e) { e.getStackTrace(); }

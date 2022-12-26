@@ -1,10 +1,6 @@
 package persistence;
 
 
-import domain.classes.Password;
-
-import java.util.ArrayList;
-
 public class PersistenceCtrl {
 
     private DataSaver dataSaver;
@@ -12,5 +8,5 @@ public class PersistenceCtrl {
 
     public String[] restorePasswords() { return dataSaver.readData(); }
 
-    public void saveAll(ArrayList<Password> data) { dataSaver.writeData(data); }
+    public void saveAll(String[] data) { dataSaver.writeData(data); }
 }

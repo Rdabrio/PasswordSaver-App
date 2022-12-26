@@ -53,4 +53,12 @@ public class PasswordList {
         if (this.passwords.size() == 0) return null;
         return new ArrayList<>(this.passwords.values());
     }
+
+    public ArrayList<String> getPasswordsData() {
+        if (this.passwords.size() == 0) return null;
+
+        ArrayList<String> result = new ArrayList<>();
+        for (Password p : this.passwords.values()) result.add(p.getId() + "\0" + p.getInfo());
+        return result;
+    }
 }

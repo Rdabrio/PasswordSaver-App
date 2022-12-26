@@ -24,7 +24,11 @@ public class DomainController {
         }
     }
 
-    public void saveAll() { persistence.saveAll(passwords.getMyPasswords()); }
+    public void saveAll() {
+        String s = "";
+        for (Password p : getMyPasswords()) s += p.getId() + "\0\n" + p.getInfo() + "\0\0";
+        persistence.saveAll(s.split("\0\0"));
+    }
 
     public boolean addPassword(String id, String info) { return this.passwords.addPassword(id, info); }
 
@@ -33,4 +37,6 @@ public class DomainController {
     public boolean modifyPassword(String currentId, String newId, String newInfo) { return this.passwords.modifyPassword(currentId, newId, newInfo); }
 
     public ArrayList<Password> getMyPasswords() { return this.passwords.getMyPasswords(); }
+
+    public ArrayList<String> getPasswordsData() { return this.passwords.getPasswordsData(); }
 }
