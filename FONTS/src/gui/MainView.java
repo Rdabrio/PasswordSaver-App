@@ -93,7 +93,7 @@ public class MainView {
     }
 
     public void newPassword() {
-        gui.setVisiblePasswordView(true);
+        gui.setVisiblePasswordView(true, "", "");
     }
 
     public void modifyPassword() {
@@ -101,7 +101,7 @@ public class MainView {
         if (row >= 0) {
             String id = dataTable.getModel().getValueAt(row, 0).toString();
             String info = dataTable.getModel().getValueAt(row, 1).toString();
-            gui.setVisiblePasswordView(true);
+            gui.setVisiblePasswordView(true, id, info);
         }
         else JOptionPane.showMessageDialog(null, "Select a password to modify");
 

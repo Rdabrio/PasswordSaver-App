@@ -31,7 +31,7 @@ public class GuiCtrl {
 
     public PasswordEvents getPasswordEvents() { return new PasswordEvents(pView); }
 
-    public void setVisiblePasswordView(boolean b) { pView.setVisible(b); }
+    public void setVisiblePasswordView(boolean b, String id, String info) { pView.setVisible(b, id, info); }
 
     public void saveAll() { domain.saveAll(); }
 

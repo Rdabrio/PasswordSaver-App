@@ -21,6 +21,10 @@ public class PasswordView {
 
     private JLabel infoLabel = new JLabel();
 
+    private String info;
+
+    private String id;
+
     private final double width;
 
     private final double height;
@@ -53,6 +57,8 @@ public class PasswordView {
 
         save.setBounds((int) (width / 2.8), (int) (height / 2.7), (int) (width/15), (int) (height/27));
         save.setText("Save");
+        save.addActionListener(gui.getPasswordEvents());
+        save.setActionCommand("save");
         contentPanel.add(save);
 
         idLabel.setText("ID:");
@@ -64,5 +70,15 @@ public class PasswordView {
         contentPanel.add(infoLabel);
     }
 
-    public void setVisible(boolean b) { this.frame.setVisible(b); }
+    public void setVisible(boolean b, String id, String info) {
+        this.frame.setVisible(b);
+        this.id = id;
+        this.info = info;
+        this.idField.setText(id);
+        this.infoField.setText(info);
+    }
+
+    public void savePassword() {
+
+    }
 }

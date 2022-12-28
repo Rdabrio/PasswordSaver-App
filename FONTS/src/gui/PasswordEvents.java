@@ -11,7 +11,13 @@ public class PasswordEvents implements PEvents {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        switch(e.getActionCommand()) {
+            case "save":
+                pView.savePassword();
+                break;
 
+            default: break;
+        }
     }
 
     @Override
