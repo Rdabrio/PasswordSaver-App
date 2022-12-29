@@ -13,40 +13,36 @@ public class PasswordList {
         return this.passwords.size() != 0 && this.passwords.containsKey(passwordId);
     }
 
-    public boolean addPassword(String passwordId, String passwordInfo) {
-        if (existsPassword(passwordId)) return false;
+    public void addPassword(String passwordId, String passwordInfo) throws MyException {
+        if (existsPassword(passwordId)) throw new MyException("Password already exists");
         Password p = new Password(passwordId, passwordInfo);
         this.passwords.put(passwordId, p);
-        return true;
     }
 
-    public boolean removePassword(String passwordId) {
-        if (!existsPassword(passwordId)) return false;
+    public void removePassword(String passwordId) throws MyException {
+        if (!existsPassword(passwordId)) throw new MyException("Password don't exists");
         this.passwords.remove(passwordId);
-        return true;
     }
 
-    public Password getPassword(String passwordId) {
-        if (!existsPassword(passwordId)) throw new RuntimeException("The password for "+" doesn't exists");
+    public Password getPassword(String passwordId) throws MyException {
+        if (!existsPassword(passwordId)) throw new MyException("The password for "+" doesn't exists");
         return this.passwords.get(passwordId);
 
     }
 
-    public boolean modifyPassword(String currentId, String newId, String newInfo) {
-        if (!existsPassword(currentId)) return false;
+    public void modifyPassword(String currentId, String newId, String newInfo) throws MyException {
+        if (!existsPassword(currentId)) throw new MyException("Password doesn't exists");
+        if (existsPassword(newId)) throw new MyException("Password already exists");
         boolean changed = false;
-        if (!newId.equals("")) {
+        if (!currentId.equals(newId)) {
             Password p = this.passwords.get(currentId);
             p.setId(newId);
             this.passwords.remove(currentId);
             this.passwords.put(newId, p);
             changed = true;
         }
-        if (!newInfo.equals("")) {
-            if (changed) this.passwords.get(newId).setInfo(newInfo);
-            else this.passwords.get(currentId).setInfo(newInfo);
-        }
-        return true;
+        if (changed) this.passwords.get(newId).setInfo(newInfo);
+        else this.passwords.get(currentId).setInfo(newInfo);
     }
 
     public ArrayList<Password> getMyPasswords() {

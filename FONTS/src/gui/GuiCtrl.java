@@ -1,5 +1,6 @@
 package gui;
 
+import domain.classes.MyException;
 import domain.controller.DomainController;
 
 import java.util.ArrayList;
@@ -35,7 +36,13 @@ public class GuiCtrl {
 
     public void saveAll() { domain.saveAll(); }
 
-    public boolean removePassword(String id) { return domain.removePassword(id); }
+    public void removePassword(String id) throws MyException { domain.removePassword(id); }
+
+    public void modifyPassword(String oID, String ID, String info) throws MyException { domain.modifyPassword(oID, ID, info); }
+
+    public void showPasswords() { main.showPasswords(); }
+
+    public void addPassword(String id, String info) throws MyException { domain.addPassword(id, info);}
 
     public static void main(String[] args) {
         GuiCtrl gui = new GuiCtrl();

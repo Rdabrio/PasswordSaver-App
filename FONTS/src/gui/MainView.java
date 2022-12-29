@@ -1,5 +1,7 @@
 package gui;
 
+import domain.classes.MyException;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -111,8 +113,11 @@ public class MainView {
         int row = dataTable.getSelectedRow();
         if (row >= 0) {
             String id = dataTable.getModel().getValueAt(row, 0).toString();
-            if (gui.removePassword(id))JOptionPane.showMessageDialog(null, "Password deleted");
-            showPasswords();
+            try {
+                gui.removePassword(id);
+                showPasswords();
+                JOptionPane.showMessageDialog(null, "Password deleted");
+            } catch (MyException e) { JOptionPane.showMessageDialog(null, e.getMsg()); }
         }
         else JOptionPane.showMessageDialog(null, "Select a password to delete it");
     }

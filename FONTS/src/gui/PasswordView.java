@@ -1,5 +1,7 @@
 package gui;
 
+import domain.classes.MyException;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -79,6 +81,22 @@ public class PasswordView {
     }
 
     public void savePassword() {
+        if (idField.getText().equals("")) JOptionPane.showMessageDialog(null, "ID field cannot be empty");
+        else if (infoField.getText().equals("")) JOptionPane.showMessageDialog(null, "Info field cannot be empty");
+        else if (id.equals("") && info.equals("")) {
+            try {
+                gui.addPassword(idField.getText(), infoField.getText());
+                JOptionPane.showMessageDialog(null, "Password added correctly");
+            } catch (MyException e) { JOptionPane.showMessageDialog(null, e.getMsg()); }
+        }
+        else {
+            try {
+                gui.modifyPassword(id, idField.getText(), infoField.getText());
+                JOptionPane.showMessageDialog(null, "Password modified correctly");
+                id = idField.getText();
+            } catch (MyException e) { JOptionPane.showMessageDialog(null, e.getMsg()); }
 
+        }
+        gui.showPasswords();
     }
 }
