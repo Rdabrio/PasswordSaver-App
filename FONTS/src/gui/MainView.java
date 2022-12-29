@@ -13,7 +13,9 @@ public class MainView {
 
     private final JFrame frame = new JFrame("Main View");
 
-    private final JPanel contentPanel = new JPanel();
+    private final JPanel contentPanel = new JPanel(new GridLayout(7, 3));
+
+    private final JPanel mainPanel = new JPanel(new BorderLayout());
 
     private final JTable dataTable = new JTable();
 
@@ -22,10 +24,6 @@ public class MainView {
     private final JButton modifyButton = new JButton();
 
     private final JButton addButton = new JButton();
-
-    private final JLabel IDLabel = new JLabel();
-
-    private final JLabel InfoLabel = new JLabel();
 
     private final double width;
 
@@ -39,9 +37,11 @@ public class MainView {
     }
 
     public void init() {
-        frame.setContentPane(contentPanel);
+        frame.setContentPane(mainPanel);
         frame.setBounds((int) (width / 2.1), (int) (height / 2.5), (int) width, (int) height);
         frame.setResizable(false);
+        frame.setMinimumSize(new Dimension((int) width, (int) height));
+        frame.setMaximumSize(new Dimension((int) width, (int) height));
 
         initComponents();
     }
@@ -49,36 +49,33 @@ public class MainView {
     private void initComponents() {
         frame.addWindowListener(gui.getMainEvents());
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        contentPanel.setLayout(null);
 
-        dataTable.setBounds((int) (width / 3.9), (int) (height / 3.9), (int) (width/2.0), (int) (height/1.4));
-        contentPanel.add(dataTable);
-
-        IDLabel.setText("Password ID");
-        IDLabel.setBounds((int) (width / 3), (int) (height / 4.7), (int) (width/7), (int) (height/19));
-        contentPanel.add(IDLabel);
-
-        InfoLabel.setText("Password Info");
-        InfoLabel.setBounds((int) (width / 1.7), (int) (height / 4.7), (int) (width/7), (int) (height/19));
-        contentPanel.add(InfoLabel);
+        JScrollPane scrollPane = new JScrollPane(dataTable);
 
         deleteButton.setText("Delete");
         deleteButton.setActionCommand("Delete");
         deleteButton.addActionListener(gui.getMainEvents());
         deleteButton.setBounds((int) (width / 1.25), (int) (height / 1.4), (int) (width/7.0), (int) (height/19.0));
-        contentPanel.add(deleteButton);
 
         addButton.setText("Add");
         addButton.setActionCommand("Add");
         addButton.addActionListener(gui.getMainEvents());
         addButton.setBounds((int) (width / 1.25), (int) (height / 2.7), (int) (width/7.0), (int) (height/19.0));
-        contentPanel.add(addButton);
 
         modifyButton.setText("Modify");
         modifyButton.setActionCommand("Modify");
         modifyButton.addActionListener(gui.getMainEvents());
         modifyButton.setBounds((int) (width / 1.25), (int) (height / 1.85), (int) (width/7.0), (int) (height/19.0));
-        contentPanel.add(modifyButton);
+
+        for (int i = 1; i <= 21; ++i) {
+            if (i == 5) contentPanel.add(addButton);
+            else if (i == 11) contentPanel.add(modifyButton);
+            else if ( i == 17) contentPanel.add(deleteButton);
+            else contentPanel.add(new JPanel());
+        }
+
+        mainPanel.add(scrollPane, BorderLayout.WEST);
+        mainPanel.add(contentPanel);
 
     }
 

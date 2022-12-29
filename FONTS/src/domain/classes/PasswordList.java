@@ -32,7 +32,7 @@ public class PasswordList {
 
     public void modifyPassword(String currentId, String newId, String newInfo) throws MyException {
         if (!existsPassword(currentId)) throw new MyException("Password doesn't exists");
-        if (existsPassword(newId)) throw new MyException("Password already exists");
+        if (existsPassword(newId) && !currentId.equals(newId)) throw new MyException("Password already exists");
         boolean changed = false;
         if (!currentId.equals(newId)) {
             Password p = this.passwords.get(currentId);

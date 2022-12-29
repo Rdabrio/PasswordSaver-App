@@ -16,6 +16,10 @@ public class PasswordEvents implements PEvents {
                 pView.savePassword();
                 break;
 
+            case "generate":
+                pView.generateRandom();
+                break;
+
             default: break;
         }
     }
