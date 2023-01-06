@@ -71,11 +71,28 @@ public class MainView {
             if (i == 5) contentPanel.add(addButton);
             else if (i == 11) contentPanel.add(modifyButton);
             else if ( i == 17) contentPanel.add(deleteButton);
-            else contentPanel.add(new JPanel());
+            else {
+                JPanel aux = new JPanel();
+                aux.setBackground(new Color(47, 62, 70));
+                contentPanel.add(aux);
+            }
         }
 
         mainPanel.add(scrollPane, BorderLayout.WEST);
         mainPanel.add(contentPanel);
+
+
+        dataTable.setBackground(new Color(47, 62, 70));
+        dataTable.setForeground(Color.WHITE);
+        dataTable.setSelectionBackground(new Color(82, 121, 111));
+        dataTable.setSelectionForeground(Color.WHITE);
+
+        deleteButton.setBackground(new Color(53, 79, 82));
+        deleteButton.setForeground(Color.WHITE);
+        addButton.setBackground(new Color(53, 79, 82));
+        addButton.setForeground(Color.WHITE);
+        modifyButton.setBackground(new Color(53, 79, 82));
+        modifyButton.setForeground(Color.WHITE);
 
     }
 

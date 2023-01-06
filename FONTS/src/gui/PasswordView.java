@@ -96,18 +96,19 @@ public class PasswordView {
         else if (id.equals("") && info.equals("")) {
             try {
                 gui.addPassword(idField.getText(), infoField.getText());
+                gui.showPasswords();
                 JOptionPane.showMessageDialog(null, "Password added correctly");
             } catch (MyException e) { JOptionPane.showMessageDialog(null, e.getMsg()); }
         }
         else {
             try {
                 gui.modifyPassword(id, idField.getText(), infoField.getText());
+                gui.showPasswords();
                 JOptionPane.showMessageDialog(null, "Password modified correctly");
                 id = idField.getText();
             } catch (MyException e) { JOptionPane.showMessageDialog(null, e.getMsg()); }
 
         }
-        gui.showPasswords();
     }
 
     public void generateRandom() {

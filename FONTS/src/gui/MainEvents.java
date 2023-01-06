@@ -31,7 +31,7 @@ public class MainEvents implements MEvents {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //if (e.getClickCount() == 2)
+        if (e.getClickCount() == 2) main.modifyPassword();
     }
 
     @Override
